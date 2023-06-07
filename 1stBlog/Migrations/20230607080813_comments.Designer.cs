@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _1stBlog.Data;
 
@@ -11,9 +12,11 @@ using _1stBlog.Data;
 namespace _1stBlog.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    partial class BlogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230607080813_comments")]
+    partial class comments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,25 +111,6 @@ namespace _1stBlog.Migrations
                     b.ToTable("BlogPostComment");
                 });
 
-            modelBuilder.Entity("_1stBlog.Models.Domain.BlogPostLike", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BlogPostId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogPostId");
-
-                    b.ToTable("BlogPostLike");
-                });
-
             modelBuilder.Entity("_1stBlog.Models.Domain.Tag", b =>
                 {
                     b.Property<Guid>("Id")
@@ -170,20 +154,9 @@ namespace _1stBlog.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("_1stBlog.Models.Domain.BlogPostLike", b =>
-                {
-                    b.HasOne("_1stBlog.Models.Domain.BlogPost", null)
-                        .WithMany("Likes")
-                        .HasForeignKey("BlogPostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("_1stBlog.Models.Domain.BlogPost", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Likes");
                 });
 #pragma warning restore 612, 618
         }

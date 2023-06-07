@@ -18,6 +18,7 @@
                     <td>Id</td>
                     <td>Имя</td>
                     <td>Отображаемое имя</td>
+                    <th> </th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,9 @@
                         <td>@tag.Id</td>
                         <td>@tag.Name</td>
                         <td>@tag.DisplayName</td>
+                        <td>
+                            <a asp-area="" asp-controller="AdminTags" asp-action="Edit" asp-route-id="@tag.Id">Редактировать</a>
+                        </td>
                     </tr>
                 }
             </tbody>
