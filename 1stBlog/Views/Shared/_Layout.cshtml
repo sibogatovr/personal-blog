@@ -27,7 +27,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
                         </li>
-
+                        
                         @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                         {
                             <li class="nav-item dropdown">
@@ -44,20 +44,39 @@
                         }
 
                     </ul>
-                   <div class="d-flex align-items-center">
+                    <ul class="navbar-nav d-flex flex-row">
+                        <!-- Icons -->
+                        <li class="nav-item me-3 me-lg-0">
+                            <a class="nav-link" href="https://github.com/sibogatovr" target="_blank">
+                                <i class="bi bi-github"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item me-3 me-lg-0">
+                            <a class="nav-link" href="https://t.me/sibogatovr" target="_blank">
+                                <i class="bi bi-telegram"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item me-3 me-lg-0">
+                            <a class="nav-link" href="https://linkedin.com/in/sibogatovr" target="_blank">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </li>                       
+                        <!-- Icon dropdown -->
+                    <div class="d-flex align-items-center">
                         @if (signInManager.IsSignedIn(User))
-                        {
+                        {                        
                             <div class="me-3 text-light">@User?.Identity?.Name</div>
-                            <a class="btn m-3 bg-light text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Выйти</a>
+                                <a class="btn btn-outline-light me-3" asp-area="" asp-controller="Account" asp-action="Logout">Выйти</a>
                         }
                         else
                         {
-                        <a class="btn m-3 bg-light text-dark" asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
-                        <a class="btn m-3 bg-light text-dark" asp-area="" asp-controller="Account" asp-action="Register">Зарегистрировтаься</a>                           
+                                <a class="btn btn-outline-light me-3" text-dark" asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
+                                <a class="btn btn-outline-light me-3" asp-area="" asp-controller="Account" asp-action="Register">Зарегистрировтаься</a>
                         }
                     </div>
                 </div>
             </div>
+           
         </nav>
     </header>
     <div>
