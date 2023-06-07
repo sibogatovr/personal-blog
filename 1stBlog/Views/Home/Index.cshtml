@@ -1,8 +1,8 @@
 ﻿@model _1stBlog.Models.ViewModels.HomeViewModel
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Главная страница";
 }
-
+<!--Header-->
 <div class="container col-xxl-8 px-4 py-5">
     <div class="row align-items-center g-5 py-5">
         <div class="col-12 col-lg-6">
@@ -10,59 +10,71 @@
             <p class="lead">Учусь, программирую, экспереминтирую</p>
         </div>
 
-
-
         <div class="col-12 col-lg-6">
             <img src="https://media.makeameme.org/created/big-project-junior.jpg" alt="Personal Blog" class="d-block mx-lg-auto img-fluid" width="300" />
         </div>
     </div>
 </div>
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-6 d-flex">
-            @if (Model != null & Model.Tags.Any())
-            {
-                foreach (var tag in Model.Tags)
-                {
-                    <span class="badge bg-dark me-1">
-                        @tag.Name
-                    </span>
-                }
-            }
-        </div>
-    </div>
-</div>
-
+<!--Content-->
 <div class="container">
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6">
             @if (Model != null && Model.BlogPosts.Any())
             {
                 foreach (var blogPost in Model.BlogPosts)
                 {
-                    <div class="mb-5 bg-light box-shadow p-5">
-                        <img src="@blogPost.FeaturedImageUrl" alt="@blogPost.Heading" class="mb-2 d-block img-fluid">
-
-                        <h2 class="mb-3">@blogPost.Heading</h2>
-                        <p class="mb-4">
-                            Автор: @blogPost.Author
-                            <br />
-                            Дата: @blogPost.PublishedDate.ToShortDateString()
-                        </p>
-                        <p class="mb-4">
+                    <div class="card mb-4">
+                        <a asp-area="" asp-controller="Blogs" asp-action="Index" asp-route-urlHandle="@blogPost.UrlHandle">
+                            <img class="card-img-top" src="@blogPost.FeaturedImageUrl" alt="@blogPost.Heading" /></a>
+                        <div class="card-body">
+                            <div class="small text-muted">
+                                @blogPost.PublishedDate.ToShortDateString() | @blogPost.Author  |
+                            
                             @foreach (var tag in blogPost.Tags)
                             {
                                 <span class="badge bg-secondary me-1">@tag.Name</span>
                             }
-                        </p>
-                        <p class="mb-4">
-                            @blogPost.ShortDescription
-                        </p>
-                        <a class="btn btn-dark" asp-area="" asp-controller="Blogs" asp-action="Index" asp-route-urlHandle="@blogPost.UrlHandle">Читать</a>
-                    </div>
+                             </div>       
+                        
+                            <h2 class="card-title h4">@blogPost.Heading</h2>
+                            <p class="card-text">@blogPost.ShortDescription</p>
+                            <a class="btn btn-primary" asp-area="" asp-controller="Blogs" asp-action="Index" asp-route-urlHandle="@blogPost.UrlHandle">Читать →</a>
+                        </div>
+                    </div>                 
                 }
             }
         </div>
+        <!-- Side widgets-->
+        <div class="col-lg-4">          
+            <!-- widget-->
+            <div class="card mb-4">
+                <div class="card-header">Виджет 1</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#!">1</a></li>
+                                <li><a href="#!">2</a></li>
+                                <li><a href="#!">3</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#!">4</a></li>
+                                <li><a href="#!">5</a></li>
+                                <li><a href="#!">6</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Side widget-->
+            <div class="card mb-4">
+                <div class="card-header">Виджет 2</div>
+                <div class="card-body">Ляляля, скоро здесь что-то будет...</div>
+            </div>
+        </div>
     </div>
 </div>
+    
+
