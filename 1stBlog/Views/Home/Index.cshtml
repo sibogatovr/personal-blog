@@ -1,13 +1,15 @@
 ﻿@model _1stBlog.Models.ViewModels.HomeViewModel
 @{
-    ViewData["Title"] = "Главная страница";
+    ViewData["Title"] = "Программирование на языке C# | Задачи | Теория";
 }
 <!--Header-->
 <div class="container col-xxl-8 px-4 py-5">
     <div class="row align-items-center g-5 py-5">
         <div class="col-12 col-lg-6">
             <h1 class="display-5 fw-bold lh-1 mb-3">Личный блог Junior .NET</h1>
-            <p class="lead">Учусь, программирую, экспереминтирую</p>
+            <p class="lead">Учусь C# сам. Это моя личная записная книжка на пути обучения. Поэтому я здесь я никого не учу и не показываю чудеса моего кода. 
+                В материале могут присутствовать ошибки.               
+            </p>
         </div>
 
         <div class="col-12 col-lg-6">
@@ -25,56 +27,67 @@
                 {
                     <div class="card mb-4">
                         <a asp-area="" asp-controller="Blogs" asp-action="Index" asp-route-urlHandle="@blogPost.UrlHandle">
-                            <img class="card-img-top" src="@blogPost.FeaturedImageUrl" alt="@blogPost.Heading" /></a>
+                            <img class="card-img-top" src="@blogPost.FeaturedImageUrl" alt="@blogPost.Heading" />
+                        </a>
                         <div class="card-body">
                             <div class="small text-muted">
                                 @blogPost.PublishedDate.ToShortDateString() | @blogPost.Author  |
-                            
-                            @foreach (var tag in blogPost.Tags)
-                            {
-                                <span class="badge bg-secondary me-1">@tag.Name</span>
-                            }
-                             </div>       
-                        
+
+                                @foreach (var tag in blogPost.Tags)
+                                {
+                                    <span class="badge bg-secondary me-1">@tag.Name</span>
+                                }
+                            </div>
+
                             <h2 class="card-title h4">@blogPost.Heading</h2>
                             <p class="card-text">@blogPost.ShortDescription</p>
                             <a class="btn btn-primary" asp-area="" asp-controller="Blogs" asp-action="Index" asp-route-urlHandle="@blogPost.UrlHandle">Читать →</a>
                         </div>
-                    </div>                 
+                    </div>
                 }
             }
         </div>
         <!-- Side widgets-->
-        <div class="col-lg-4">          
+        <div class="col-lg-4">
             <!-- widget-->
             <div class="card mb-4">
-                <div class="card-header">Виджет 1</div>
+                <div class="card-header">Последние 5 записей</div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#!">1</a></li>
-                                <li><a href="#!">2</a></li>
-                                <li><a href="#!">3</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-6">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#!">4</a></li>
-                                <li><a href="#!">5</a></li>
-                                <li><a href="#!">6</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    @if (Model != null && Model.BlogPosts.Any())
+                    {
+                        <table class="table">
+                            <tbody>
+                                @foreach (var blogPost in Model.BlogPosts.Take(5))
+                                {
+                                    <tr>
+                                        <td>
+                                            <a asp-area="" asp-controller="Blogs" asp-action="Index"
+                                       asp-route-urlHandle="@blogPost.UrlHandle">@blogPost.Heading</a>
+                                            <div class="small text-muted">
+                                                @blogPost.PublishedDate.ToShortDateString() | @blogPost.Author
+                                            </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" asp-area="" asp-controller="Blogs"
+                                       asp-action="Index" asp-route-urlHandle="@blogPost.UrlHandle">Читать →</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
                 </div>
             </div>
             <!-- Side widget-->
             <div class="card mb-4">
-                <div class="card-header">Виджет 2</div>
-                <div class="card-body">Ляляля, скоро здесь что-то будет...</div>
+                <div class="card-header">Виджет №2</div>
+                <div class="card-body">
+                    <div class="card-body">                                         
+                </div>
             </div>
         </div>
     </div>
 </div>
-    
+
 

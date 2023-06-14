@@ -6,5 +6,6 @@ namespace _1stBlog.Models.ViewModels
     {
         public IEnumerable<BlogPost> BlogPosts { get; set; }
         public IEnumerable<Tag> Tags { get; set; }
+
     }
 }
