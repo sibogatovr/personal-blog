@@ -208,6 +208,10 @@
     <None Include="wwwroot\ckeditor\plugins\pastefromword\filter\default.js" />
     <None Include="wwwroot\ckeditor\plugins\pastetools\filter\common.js" />
     <None Include="wwwroot\ckeditor\plugins\pastetools\filter\image.js" />
+    <None Include="wwwroot\ckeditor\plugins\pre\dialogs\pre.js" />
+    <None Include="wwwroot\ckeditor\plugins\pre\lang\en.js" />
+    <None Include="wwwroot\ckeditor\plugins\pre\lang\ru.js" />
+    <None Include="wwwroot\ckeditor\plugins\pre\plugin.js" />
     <None Include="wwwroot\ckeditor\plugins\scayt\CHANGELOG.md" />
     <None Include="wwwroot\ckeditor\plugins\scayt\dialogs\options.js" />
     <None Include="wwwroot\ckeditor\plugins\scayt\LICENSE.md" />

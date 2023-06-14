@@ -7,8 +7,9 @@
     <div class="row align-items-center g-5 py-5">
         <div class="col-12 col-lg-6">
             <h1 class="display-5 fw-bold lh-1 mb-3">Личный блог Junior .NET</h1>
-            <p class="lead">Учусь C# сам. Это моя личная записная книжка на пути обучения. Поэтому я здесь я никого не учу и не показываю чудеса моего кода. 
-                В материале могут присутствовать ошибки.               
+            <p class="lead">
+                Учусь C# сам. Это моя личная записная книжка на пути обучения. Поэтому я здесь я никого не учу и не показываю чудеса моего кода.
+                В материале могут присутствовать ошибки.
             </p>
         </div>
 
@@ -49,6 +50,48 @@
         </div>
         <!-- Side widgets-->
         <div class="col-lg-4">
+            <!-- Side widget-->
+            <div class="mb-4">
+                <div class="card-body">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div cla ss="col-6 d-flex">
+                                    @if (Model != null && Model.Tags.Any())
+                                    {
+                                        foreach (var tag in Model.Tags)
+                                        {
+                                            <span class="badge bg-dark me-1">@tag.Name</span>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="card mb-4">
+                <div class="card-header">Виджет №2</div>
+                <div class="card-body">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div cla ss="col-6 d-flex">
+                                    @if (Model != null && Model.Tags.Any())
+                                    {
+                                        foreach (var tag in Model.Tags)
+                                        {
+                                            <span class="badge bg-dark me-1">@tag.Name</span>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>*@
             <!-- widget-->
             <div class="card mb-4">
                 <div class="card-header">Последние 5 записей</div>
@@ -67,7 +110,7 @@
                                                 @blogPost.PublishedDate.ToShortDateString() | @blogPost.Author
                                             </div>
                                         </td>
-                                        
+
                                         <td>
                                             <a class="btn btn-primary btn-sm" asp-area="" asp-controller="Blogs"
                                        asp-action="Index" asp-route-urlHandle="@blogPost.UrlHandle">Читать →</a>
@@ -79,15 +122,7 @@
                     }
                 </div>
             </div>
-            <!-- Side widget-->
-            <div class="card mb-4">
-                <div class="card-header">Виджет №2</div>
-                <div class="card-body">
-                    <div class="card-body">                                         
-                </div>
-            </div>
+           
         </div>
-    </div>
-</div>
 
 
