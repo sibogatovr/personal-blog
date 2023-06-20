@@ -106,5 +106,22 @@ namespace _1stBlog.Controllers
             }
             return Forbid();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            var blogPosts = await blogPostRepository.GetAllAsync();
+
+            return View(blogPosts);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ListCategory(string Name)
+        {
+            var blogPosts = await blogPostRepository.GetAllByTag(Name);
+
+            return View(blogPosts);
+        }
+
     }
 }

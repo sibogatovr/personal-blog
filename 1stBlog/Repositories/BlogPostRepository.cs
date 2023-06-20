@@ -1,6 +1,8 @@
 ﻿using _1stBlog.Data;
 using _1stBlog.Models.Domain;
+using Azure;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace _1stBlog.Repositories
 {
@@ -34,7 +36,13 @@ namespace _1stBlog.Repositories
 
         public async Task<IEnumerable<BlogPost>> GetAllAsync()
         {
-            return await blogDbContext.BlogPosts.OrderByDescending(p =>p.PublishedDate).Include(x => x.Tags).ToListAsync();
+            return await blogDbContext.BlogPosts.OrderByDescending(p => p.PublishedDate).Include(x => x.Tags).ToListAsync();
+        }
+        public async Task<IEnumerable<BlogPost>> GetAllByTag(string Name)
+        {
+            return await blogDbContext.BlogPosts.OrderByDescending(p => p.PublishedDate)
+                .Where(x => x.Tags.Any(tag => tag.Name == Name))
+                .ToListAsync();
         }
 
         public async Task<BlogPost?> GetAsync(Guid id)

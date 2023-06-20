@@ -1,0 +1,37 @@
+﻿@model List<_1stBlog.Models.Domain.BlogPost>
+
+@{
+    ViewData["Title"] = "Все записи";
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Список записей</h1>
+    </div>
+</div>
+<!--Content-->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-6">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var blogPost in Model)
+                {
+                    <div class="card mb-4">
+                        <a asp-area="" asp-controller="Blogs" asp-action="Index" asp-route-urlHandle="@blogPost.UrlHandle">
+                            <img class="card-img-top" src="@blogPost.FeaturedImageUrl" alt="@blogPost.Heading" />
+                        </a>
+                        <div class="card-body">
+                            <div class="small text-muted">
+                                @blogPost.PublishedDate.ToShortDateString() | @blogPost.Author  |
+                            </div>
+
+                            <h2 class="card-title h4">@blogPost.Heading</h2>
+                            <p class="card-text">@blogPost.ShortDescription</p>
+                            <a class="btn btn-primary" asp-area="" asp-controller="Blogs" asp-action="Index" asp-route-urlHandle="@blogPost.UrlHandle">Читать →</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>     
+

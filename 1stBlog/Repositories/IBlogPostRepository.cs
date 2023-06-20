@@ -5,6 +5,7 @@ namespace _1stBlog.Repositories
     public interface IBlogPostRepository
     {
         Task<IEnumerable<BlogPost>> GetAllAsync();
+        Task<IEnumerable<BlogPost>> GetAllByTag(string Name);
         Task<BlogPost> GetAsync(Guid id);
         Task<BlogPost?> GetByUrlHandleAsync(string urlHandle);
         Task<BlogPost> AddAsync(BlogPost blogPost);
